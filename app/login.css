@@ -1,0 +1,528 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  line-height: 1.6;
+  /* Remove hardcoded color and background */
+  /* color: #333; */
+  /* background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); */
+  min-height: 100vh;
+}
+
+/* App container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Login container */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Login card */
+.login-card {
+  background: hsl(var(--card));
+  border-radius: 16px;
+  /* Slightly more rounded */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  /* More pronounced shadow */
+  padding: 2.5rem;
+  width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: hsl(var(--card-foreground));
+  /* Removed position: relative and overflow: hidden from here */
+}
+
+.login-card:hover {
+  transform: translateY(-4px);
+  /* More noticeable lift */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.success-card {
+  text-align: center;
+}
+
+/* Typography */
+.login-title {
+  font-size: 2rem;
+  /* Slightly larger */
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.75rem;
+  /* More space */
+  text-align: center;
+}
+
+.login-subtitle {
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+  margin-bottom: 2.5rem;
+  /* More space */
+  font-size: 1rem;
+  /* Slightly larger */
+}
+
+/* Form styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  /* Increased gap */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  /* Slightly more space */
+}
+
+.form-label {
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  font-size: 0.95rem;
+  /* Slightly larger */
+}
+
+.form-input {
+  padding: 0.875rem 1rem;
+  border: 2px solid hsl(var(--border));
+  border-radius: 10px;
+  /* Slightly more rounded */
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: hsl(var(--background));
+  width: 100%;
+  /* Ensure it takes full width */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  /* Matches new gradient */
+  box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.15);
+  /* Matches new gradient */
+}
+
+.form-input.input-error {
+  border-color: hsl(var(--destructive));
+  /* Red border for errors */
+}
+
+.form-input::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+/* Password input specific styles */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper .form-input {
+  padding-right: 3rem;
+  /* Make space for the toggle button */
+}
+
+.password-toggle-button {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--muted-foreground));
+  transition: color 0.2s ease;
+  border-radius: 50%;
+  /* Make it circular */
+}
+
+.password-toggle-button:hover {
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--secondary));
+  /* Subtle hover background */
+}
+
+.password-toggle-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.3);
+  /* Focus ring */
+}
+
+.password-toggle-button .icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Links */
+.forgot-password-link,
+.signup-link {
+  font-size: 0.9rem;
+  color: hsl(var(--primary));
+  /* Matches new gradient */
+  text-decoration: none;
+  transition: color 0.2s ease;
+  align-self: flex-end;
+  /* Aligns to the right */
+}
+
+.forgot-password-link:hover,
+.signup-link:hover {
+  color: hsl(var(--accent));
+  /* Darker blue on hover */
+  text-decoration: underline;
+}
+
+/* Button styles */
+.login-button {
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #a7c7ff 0%, #6a11cb 100%);
+  /* pastel blue gradient */
+  color: hsl(var(--primary-foreground));
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 50px;
+  position: relative;
+  transition: transform 0.3s ease-out, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Make button text white in dark mode */
+.dark .login-button {
+  color: #fff;
+}
+
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(106, 17, 203, 0.3);
+  background: linear-gradient(135deg, #b5d0ff 0%, #7f3afc 100%);
+  /* lighter pastel blue gradient on hover */
+}
+
+.login-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.4);
+  /* Matches new gradient */
+}
+
+.login-button:active:not(:disabled) {
+  transform: translateY(0);
+  background: linear-gradient(135deg, #5a0fb0 0%, #1e60e0 100%);
+  /* Darker active state */
+}
+
+.login-button.disabled {
+  background: linear-gradient(135deg, #a7c7ff 0%, #6a11cb 100%);
+  /* color: hsl(var(--muted-foreground)); */
+  opacity: 0.5;
+  filter: blur(0.5px);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.login-button.loading {
+  cursor: wait;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 18px;
+  /* Slightly larger */
+  height: 18px;
+  /* Slightly larger */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error messages */
+.error-message {
+  background: hsl(var(--destructive-light));
+  border: 1px solid hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  /* Slightly more rounded */
+  font-size: 0.95rem;
+  /* Slightly larger */
+  margin-top: 0.5rem;
+}
+
+.error-message:focus {
+  outline: 2px solid hsl(var(--destructive));
+  outline-offset: 2px;
+}
+
+.field-error {
+  color: hsl(var(--destructive));
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+/* Form help text */
+.form-help {
+  font-size: 0.85rem;
+  /* Slightly larger */
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+  margin-top: 0.5rem;
+  min-height: 1.2rem;
+}
+
+/* Success styles */
+.success-icon {
+  width: 64px;
+  /* Slightly larger */
+  height: 64px;
+  /* Slightly larger */
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  /* Larger icon */
+  color: white;
+  margin: 0 auto 1.75rem;
+  /* More space */
+  font-weight: bold;
+}
+
+.user-info {
+  margin: 1.75rem 0;
+  /* More space */
+  padding: 1.25rem;
+  /* More padding */
+  background: hsl(var(--secondary));
+  border-radius: 10px;
+  /* Slightly more rounded */
+}
+
+.user-email {
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  margin-top: 0.6rem;
+  /* More space */
+}
+
+.logout-button {
+  padding: 0.8rem 1.6rem;
+  /* Slightly larger */
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  border: none;
+  border-radius: 10px;
+  /* Slightly more rounded */
+  font-size: 0.95rem;
+  /* Slightly larger */
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.logout-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.3);
+}
+
+/* Sign up prompt */
+.signup-prompt {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Demo info */
+.demo-info {
+  margin-top: 2.5rem;
+  /* More space */
+  padding: 1.25rem;
+  /* More padding */
+  background: hsl(var(--popover));
+  border: 1px solid hsl(var(--border));
+  border-radius: 10px;
+  /* Slightly more rounded */
+  font-size: 0.85rem;
+  color: hsl(var(--popover-foreground));
+}
+
+.demo-info p {
+  margin-bottom: 0.3rem;
+}
+
+.demo-info p:first-child {
+  margin-bottom: 0.6rem;
+}
+
+.demo-info .note {
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Password Checklist Styles */
+.password-checklist {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: hsl(var(--muted-foreground));
+  /* Default color */
+}
+
+.password-checklist li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+/* Password checklist: green for met */
+:root {
+  --success: 142 71% 45%;
+  /* Tailwind green-500 */
+}
+
+.password-checklist li.met {
+  color: hsl(var(--success));
+  /* Green for met */
+}
+
+.password-checklist li.unmet {
+  color: hsl(var(--destructive));
+  /* Red for unmet */
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 0.5rem;
+  }
+
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-title {
+    font-size: 1.75rem;
+  }
+
+  .form-input,
+  .login-button {
+    padding: 0.75rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .login-card {
+    border: 2px solid hsl(var(--border));
+  }
+
+  .form-input {
+    border-width: 2px;
+  }
+
+  .form-input:focus {
+    border-color: hsl(var(--border));
+    box-shadow: 0 0 0 3px hsl(var(--border));
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .loading-spinner {
+    animation: none;
+    border: 2px solid white;
+  }
+}
+
+/* Focus visible for better keyboard navigation */
+.login-button:focus-visible,
+.form-input:focus-visible,
+.error-message:focus-visible,
+.password-toggle-button:focus-visible,
+.forgot-password-link:focus-visible,
+.signup-link:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  /* Matches new gradient */
+  outline-offset: 2px;
+}
+
+.signup-link,
+.signup-link:hover,
+.forgot-password-link,
+.forgot-password-link:hover {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.signup-link:hover {
+  color: #3b82f6 !important;
+  text-decoration: underline;
+}
+
+.dark .signup-link:hover {
+  color: #60a5fa !important;
+  text-decoration: underline;
+}
+
+.forgot-password-link:hover {
+  color: #3b82f6 !important;
+  text-decoration: underline;
+}
+
+.dark .forgot-password-link:hover {
+  color: #60a5fa !important;
+  text-decoration: underline;
+}
