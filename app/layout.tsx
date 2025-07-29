@@ -6,8 +6,7 @@ import { ThemeToggle } from "@/components/ui/toggle"
 
 export const metadata: Metadata = {
   title: "Secure Login - SPA",
-  description: "A clean, accessible single-page application for user authentication",
-  generator: 'v0.dev'
+  description: "A clean, accessible single-page application for user authentication"
 }
 
 export default function RootLayout({
